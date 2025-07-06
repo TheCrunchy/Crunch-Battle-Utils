@@ -52,11 +52,11 @@ public class Core extends JavaPlugin implements Listener, CommandExecutor {
                 maxDeaths = Integer.parseInt(args[1]);
                 battleActive = true;
                 deathCounts.clear();
-
+                
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "whitelist on");
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule doMobSpawning false");
-
-                sender.sendMessage(ChatColor.RED + "Battle mode enabled. Max deaths: " + maxDeaths);
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule doImmediateRespawn true");
+                 Bukkit.broadcastMessage(ChatColor.RED + "Battle mode enabled. Max deaths: " + maxDeaths);
             } catch (NumberFormatException e) {
                 sender.sendMessage("Invalid number: " + args[1]);
             }
@@ -68,8 +68,8 @@ public class Core extends JavaPlugin implements Listener, CommandExecutor {
 
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule doMobSpawning true");
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "whitelist on");
-
-            sender.sendMessage(ChatColor.RED + "Battle mode disabled.");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule doImmediateRespawn false");
+              Bukkit.broadcastMessage(ChatColor.RED + "Battle mode disabled.");
             return true;
         }
 
@@ -89,7 +89,7 @@ public class Core extends JavaPlugin implements Listener, CommandExecutor {
 
         if (newDeathCount >= maxDeaths) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "whitelist remove " + player.getName());
-             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kick " + player.getName() + "Eliminated from battle.");
+             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kick " + player.getName() + " Eliminated from battle.");
             Bukkit.broadcastMessage(player.getName() + ChatColor.RED + " has been eliminated from the battle.");
         } else {
             player.sendMessage("You have died " + newDeathCount + "/" + maxDeaths + " times.");
