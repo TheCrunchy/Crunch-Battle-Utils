@@ -1,0 +1,15 @@
+build/libs/Crunch-No-MobAI-1.0.0.jar
+lib/spigot-1.20.1-R0.1-SNAPSHOT.jar
+lib/spigot-api-1.20.1-R0.1-SNAPSHOT.jar
+# Ignore all jar files
+*.jar
+
+# But do NOT ignore the Gradle wrapper jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# Ignore gradle caches and build directories
+.gradle/
+build/
+
+# But do NOT ignore the wrapper properties file
+!gradle/wrapper/gradle-wrapper.properties
